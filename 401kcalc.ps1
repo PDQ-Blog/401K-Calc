@@ -423,7 +423,7 @@ Function New-RetirementData {
             $CompanyMaxContributionPercentageLabel, $CompanyMaxContributionPercentage, $AnnualIncreaseLabel, $AnnualIncrease, $InterestRateLabel, $InterestRate, $NumContributionsPerYearLabel,
             $NumContributionsPerYear, $RetirementExpenseLabel, $RetirementExpense, $InflationRateLabel, $InflationRate, $WithdrawalRateLabel, $WithdrawalRate,
             $RetirementInterestRateLabel,$RetirementInterestRate, $OKButton, $CancelButton))
-    $FormResults = $RetirementCalculator.Showdialog()
+    $RetirementCalculator.Showdialog()
 
     
 } #End Function 
