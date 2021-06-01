@@ -74,7 +74,7 @@ function New-RetirementGraph {
         $Results.Salary = [int]$Results.Salary * (1 + $Results.AnnualIncrease)
     }While ($Results.Principal -le $RetirementNumber)
     ###Create Draw Down Phase
-    $FinalYear = $Age + 30
+    $FinalYear = $Age + 40
     $Drawdown = $Age..$FinalYear
     $xRate = [math]::pow((1 + $Results.RetirementInterestRate / 12), (12))
     Foreach($Retirement in $Drawdown){
@@ -147,7 +147,6 @@ function New-RetirementGraph {
     $FundGraph.Text = "MoneyMoneyMoney....MONEY!" 
     $FundGraph.AutoSize = $true
     $FundSheet = New-Object System.Windows.Forms.DataGridView
-    $FundSheet.Columns[5].AutoSizeMode("AllCells")
     $FundSheet.Height = 660
     $FundSheet.Width = 700
     $FundSheet.BorderStyle = [System.Windows.Forms.BorderStyle]::None
@@ -195,7 +194,7 @@ Function New-RetirementData {
     ######Create OK and Cancel Button
     $OKButton = New-Object System.Windows.Forms.Button
     $OKButton.Location = New-Object System.Drawing.Point(75, 315)
-    $OKButton.Size = New-Object System.Drawing.Size(75, 23)
+    $OKButton.Size = New-Object System.Drawing.Size(90, 23)
     $OKButton.Text = 'Show Graph'
     # Don't set a DialogResult to prevent the form from closing
     # $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
@@ -203,7 +202,7 @@ Function New-RetirementData {
     $RetirementCalculator.AcceptButton = $OKButton
 
     $CancelButton = New-Object System.Windows.Forms.Button
-    $CancelButton.Location = New-Object System.Drawing.Point(150, 315)
+    $CancelButton.Location = New-Object System.Drawing.Point(165, 315)
     $CancelButton.Size = New-Object System.Drawing.Size(75, 23)
     $CancelButton.Text = 'Cancel'
     $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
@@ -222,7 +221,7 @@ Function New-RetirementData {
     $StartYear.height = 20
     $StartYear.add_TextChanged($FormatNumbers)
     $StartYear.MaxLength = 2
-    $StartYear.location = New-Object System.Drawing.Point(190, 5)
+    $StartYear.location = New-Object System.Drawing.Point(210, 5)
 
     ######Create Principal Box    
     $PrincipalLabel = New-Object system.Windows.Forms.Label
@@ -237,7 +236,7 @@ Function New-RetirementData {
     $Principal.height = 20
     $Principal.add_TextChanged( { $FormatNumbers })
     $Principal.add_LostFocus($AddCommas)
-    $Principal.location = New-Object System.Drawing.Point(190, 27)
+    $Principal.location = New-Object System.Drawing.Point(210, 27)
 
     ######Create Salary Box
     $SalaryLabel = New-Object System.Windows.Forms.Label
@@ -252,7 +251,7 @@ Function New-RetirementData {
     $Salary.height = 20
     $Salary.add_TextChanged($FormatNumbers)
     $Salary.add_LostFocus($AddCommas)
-    $Salary.location = New-Object System.Drawing.Point(190, 49)
+    $Salary.location = New-Object System.Drawing.Point(210, 49)
 
     ######Create Employee Contribution Percentage Box
     $EmployeeContributionPercentageLabel = New-Object system.Windows.Forms.Label
@@ -268,7 +267,7 @@ Function New-RetirementData {
     $EmployeeContributionPercentage.add_LostFocus($CalculatePercentage)
     $EmployeeContributionPercentage.add_TextChanged($FormatNumbers)
     $EmployeeContributionPercentage.add_GotFocus($RemovePercentage)
-    $EmployeeContributionPercentage.location = New-Object System.Drawing.Point(190, 71)
+    $EmployeeContributionPercentage.location = New-Object System.Drawing.Point(210, 71)
 
     ######Create Employee Contribution Percentage Box
     $CompanyContributionPercentageLabel = New-Object system.Windows.Forms.Label
@@ -285,7 +284,7 @@ Function New-RetirementData {
     $CompanyContributionPercentage.add_LostFocus($CalculatePercentage)
     $CompanyContributionPercentage.add_TextChanged($FormatNumbers)
     $CompanyContributionPercentage.add_GotFocus($RemovePercentage)
-    $CompanyContributionPercentage.location = New-Object System.Drawing.Point(190, 93)
+    $CompanyContributionPercentage.location = New-Object System.Drawing.Point(210, 93)
 
     ######Create Employee Contribution Max Percentage Box
     $CompanyMaxContributionPercentageLabel = New-Object system.Windows.Forms.Label
@@ -301,7 +300,7 @@ Function New-RetirementData {
     $CompanyMaxContributionPercentage.add_LostFocus($CalculatePercentage)
     $CompanyMaxContributionPercentage.add_TextChanged($FormatNumbers)
     $CompanyMaxContributionPercentage.add_GotFocus($RemovePercentage)
-    $CompanyMaxContributionPercentage.location = New-Object System.Drawing.Point(190, 115)
+    $CompanyMaxContributionPercentage.location = New-Object System.Drawing.Point(210, 115)
 
     ######Create Annual Salary Increase Box
     $AnnualIncreaseLabel = New-Object system.Windows.Forms.Label
@@ -317,7 +316,7 @@ Function New-RetirementData {
     $AnnualIncrease.add_LostFocus($CalculatePercentage)
     $AnnualIncrease.add_TextChanged($FormatNumbers)
     $AnnualIncrease.add_GotFocus($RemovePercentage)
-    $AnnualIncrease.location = New-Object System.Drawing.Point(190, 137)
+    $AnnualIncrease.location = New-Object System.Drawing.Point(210, 137)
 
     ######Create Interest Rate Box
     $InterestRateLabel = New-Object system.Windows.Forms.Label
@@ -333,7 +332,7 @@ Function New-RetirementData {
     $InterestRate.add_LostFocus($CalculatePercentage)
     $InterestRate.add_TextChanged($FormatNumbers)
     $InterestRate.add_GotFocus($RemovePercentage)
-    $InterestRate.location = New-Object System.Drawing.Point(190, 159)
+    $InterestRate.location = New-Object System.Drawing.Point(210, 159)
 
     ######Create Number of Contributions per year Box
     $NumContributionsPerYearLabel = New-Object system.Windows.Forms.Label
@@ -349,7 +348,7 @@ Function New-RetirementData {
     $NumContributionsPerYear.width = 50
     $NumContributionsPerYear.height = 20
     $NumContributionsPerYear.add_TextChanged($FormatNumbers)
-    $NumContributionsPerYear.location = New-Object System.Drawing.Point(190, 181)
+    $NumContributionsPerYear.location = New-Object System.Drawing.Point(210, 181)
 
     ######Retirement Number
     $RetirementExpenseLabel = New-Object system.Windows.Forms.Label
@@ -366,7 +365,7 @@ Function New-RetirementData {
     $RetirementExpense.height = 20
     $RetirementExpense.add_TextChanged($FormatNumbers)
     $RetirementExpense.add_LostFocus($AddCommas)
-    $RetirementExpense.location = New-Object System.Drawing.Point(190, 203)
+    $RetirementExpense.location = New-Object System.Drawing.Point(210, 203)
 
     ######Create Inflation Rate Box
     $InflationRateLabel = New-Object system.Windows.Forms.Label
@@ -383,7 +382,7 @@ Function New-RetirementData {
     $InflationRate.add_LostFocus($CalculatePercentage)
     $InflationRate.add_TextChanged($FormatNumbers)
     $InflationRate.add_GotFocus($RemovePercentage)
-    $InflationRate.location = New-Object System.Drawing.Point(190, 225)
+    $InflationRate.location = New-Object System.Drawing.Point(210, 225)
 
     ######Create Withdrawal Rate Box
     $WithdrawalRateLabel = New-Object system.Windows.Forms.Label
@@ -400,7 +399,7 @@ Function New-RetirementData {
     $WithdrawalRate.add_LostFocus($CalculatePercentage)
     $WithdrawalRate.add_TextChanged($FormatNumbers)
     $WithdrawalRate.add_GotFocus($RemovePercentage)
-    $WithdrawalRate.location = New-Object System.Drawing.Point(190, 247)
+    $WithdrawalRate.location = New-Object System.Drawing.Point(210, 247)
 
     ######Create After Retirement Interest Rate
     $RetirementInterestRateLabel = New-Object system.Windows.Forms.Label
@@ -416,7 +415,7 @@ Function New-RetirementData {
     $RetirementInterestRate.add_LostFocus($CalculatePercentage)
     $RetirementInterestRate.add_TextChanged($FormatNumbers)
     $RetirementInterestRate.add_GotFocus($RemovePercentage)
-    $RetirementInterestRate.location = New-Object System.Drawing.Point(190, 269)
+    $RetirementInterestRate.location = New-Object System.Drawing.Point(210, 269)
 
     ######Build final form
     $RetirementCalculator.controls.AddRange(@($StartYearLabel, $StartYear, $EndYearLabel, $EndYear, $PrincipalLabel, $Principal, $SalaryLabel, $Salary,
@@ -424,7 +423,7 @@ Function New-RetirementData {
             $CompanyMaxContributionPercentageLabel, $CompanyMaxContributionPercentage, $AnnualIncreaseLabel, $AnnualIncrease, $InterestRateLabel, $InterestRate, $NumContributionsPerYearLabel,
             $NumContributionsPerYear, $RetirementExpenseLabel, $RetirementExpense, $InflationRateLabel, $InflationRate, $WithdrawalRateLabel, $WithdrawalRate,
             $RetirementInterestRateLabel,$RetirementInterestRate, $OKButton, $CancelButton))
-    $FormResults = $RetirementCalculator.Showdialog()
+    $RetirementCalculator.Showdialog()
 
     
 } #End Function 
